@@ -18,6 +18,7 @@ function CountryList() {
 
   async function handleCreateCountry() {
     const newCountry = {
+      country_id: 88,
       country_name: newCountryName,
     };
     const response = await axios.post(
