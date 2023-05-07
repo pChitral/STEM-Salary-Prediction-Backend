@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<GenderList />} />
+        <Route exact path="/genders" element={<GenderList />} />
         <Route path="/countries" element={<CountryList />} />
       </Routes>
     </Router>

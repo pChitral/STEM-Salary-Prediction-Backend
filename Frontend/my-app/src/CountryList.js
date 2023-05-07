@@ -4,12 +4,12 @@ import axios from "axios";
 function CountryList() {
   const [countries, setCountries] = useState([]);
   const [newCountryName, setNewCountryName] = useState("");
-  const [updateCountryName, setUpdateCountryName] = useState("");
   const [deleteCountryId, setDeleteCountryId] = useState("");
+  const [updateCountryNames, setUpdateCountryNames] = useState({});
 
   useEffect(() => {
     async function fetchCountries() {
-      const response = await axios.get("http://localhost:8000/countries/");
+      const response = await axios.get("http://localhost:8000/countries");
       setCountries(response.data.items);
     }
 
@@ -18,27 +18,38 @@ function CountryList() {
 
   async function handleCreateCountry() {
     const newCountry = {
-      country_id: countries.length + 1, // Auto-increment ID
-      country_name: newCountryName
+      country_name: newCountryName,
     };
-    await axios.post("http://localhost:8000/country/create", newCountry);
-    setCountries([...countries, newCountry]);
+    const response = await axios.post(
+      "http://localhost:8000/country/create",
+      newCountry
+    );
+    setCountries([...countries, response.data]);
     setNewCountryName("");
   }
 
   async function handleUpdateCountry(country) {
     const updatedCountry = {
       country_id: country.country_id,
-      country_name: updateCountryName
+      country_name: updateCountryNames[country.country_id],
     };
-    await axios.put(`http://localhost:8000/country/update/${country.country_id}`, updatedCountry);
-    const updatedCountries = countries.map(c => c.country_id === country.country_id ? updatedCountry : c);
+    await axios.put(
+      `http://localhost:8000/country/update/${country.country_id}`,
+      updatedCountry
+    );
+    const updatedCountries = countries.map((c) =>
+      c.country_id === country.country_id ? updatedCountry : c
+    );
     setCountries(updatedCountries);
   }
 
   async function handleDeleteCountry() {
-    await axios.delete(`http://localhost:8000/country/delete/${deleteCountryId}`);
-    const updatedCountries = countries.filter(c => c.country_id !== deleteCountryId);
+    await axios.delete(
+      `http://localhost:8000/country/delete/${deleteCountryId}`
+    );
+    const updatedCountries = countries.filter(
+      (c) => c.country_id !== deleteCountryId
+    );
     setCountries(updatedCountries);
     setDeleteCountryId("");
   }
@@ -47,16 +58,23 @@ function CountryList() {
     <div>
       <h1>Country List</h1>
       <ul>
-        {countries.map(country => (
+        {countries.map((country) => (
           <li key={country.country_id}>
             {country.country_id} - {country.country_name}
             <input
               type="text"
-              value={updateCountryName}
-              onChange={e => setUpdateCountryName(e.target.value)}
+              value={updateCountryNames[country.country_id] || ""}
+              onChange={(e) =>
+                setUpdateCountryNames({
+                  ...updateCountryNames,
+                  [country.country_id]: e.target.value,
+                })
+              }
             />
             <button onClick={() => handleUpdateCountry(country)}>Update</button>
-            <button onClick={() => setDeleteCountryId(country.country_id)}>Delete</button>
+            <button onClick={() => setDeleteCountryId(country.country_id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
@@ -66,7 +84,7 @@ function CountryList() {
           type="text"
           placeholder="Country name"
           value={newCountryName}
-          onChange={e => setNewCountryName(e.target.value)}
+          onChange={(e) => setNewCountryName(e.target.value)}
         />
         <button onClick={handleCreateCountry}>Create</button>
       </div>
@@ -76,7 +94,7 @@ function CountryList() {
           type="text"
           placeholder="Country ID"
           value={deleteCountryId}
-          onChange={e => setDeleteCountryId(parseInt(e.target.value))}
+          onChange={(e) => setDeleteCountryId(parseInt(e.target.value))}
         />
         <button onClick={handleDeleteCountry}>Delete</button>
       </div>
