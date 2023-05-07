@@ -174,3 +174,115 @@ async def delete_city(item_id: int):
     conn.commit()
     conn.close()
     return {"item_id": item_id}
+
+# COMPANY CRUD
+
+# Define the Item schema
+class CompanyItem(BaseModel):
+    company_id: int
+    company_name: str
+
+
+# Create a new company
+@app.post("/company/create")
+async def create_company(item: CompanyItem):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Company (company_id, company_name) VALUES (?, ?)",
+              (item.company_id, item.company_name))
+    conn.commit()
+    conn.close()
+    return {"item": item}
+
+
+# Read all companies
+@app.get("/companies/")
+async def read_companies():
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM Company")
+    items = []
+    for row in c.fetchall():
+        item = {"company_id": row[0], "company_name": row[1]}
+        items.append(item)
+    conn.commit()
+    conn.close()
+    return {"items": items}
+
+
+# Update a company by company_id
+@app.put("/company/update/{company_id}")
+async def update_company(company_id: int, item: CompanyItem):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Company SET company_name = ? WHERE company_id = ?",
+              (item.company_name, company_id))
+    conn.commit()
+    conn.close()
+    return {"company_id": company_id, "item": item}
+
+
+# Delete a company by company_id
+@app.delete("/company/delete/{company_id}")
+async def delete_company(company_id: int):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM Company WHERE company_id = ?", (company_id,))
+    conn.commit()
+    conn.close()
+    return {"company_id": company_id}
+
+
+
+
+# Tag CRUD
+
+class Tag(BaseModel):
+    tag_id: int
+    tag_name: str
+
+
+@app.post("/tag/create")
+async def create_tag(item: Tag):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Tag (tag_id, tag_name) VALUES (?, ?)",
+              (item.tag_id, item.tag_name))
+    conn.commit()
+    conn.close()
+    return {"item": item}
+
+
+@app.get("/tags/")
+async def read_tags():
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tag")
+    items = []
+    for row in c.fetchall():
+        item = {"tag_id": row[0],  "tag_name": row[1]}
+        items.append(item)
+    conn.commit()
+    conn.close()
+    return {"items": items}
+
+
+@app.put("/tag/update/{item_id}")
+async def update_tag(item_id: int, item: Tag):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Tag SET tag_name = ? WHERE tag_id = ?",
+              (item.tag_name, item_id))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id, "item": item}
+
+
+@app.delete("/tag/delete/{item_id}")
+async def delete_tag(item_id: int):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM Tag WHERE tag_id = ?", (item_id,))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id}
