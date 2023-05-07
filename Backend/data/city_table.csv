@@ -1,0 +1,956 @@
+city_id,city_name
+9000,Redwood City
+9001,San Francisco
+9002,Seattle
+9003,Sunnyvale
+9004,Mountain View
+9005,Redmond
+9006,Bellevue
+9007,Menlo Park
+9008,London
+9009,Cupertino
+9010,New York
+9011,Los Gatos
+9012,Dublin
+9013,Baltimore
+9014,Sacramento
+9015,Hillsboro
+9016,Cambridge
+9017,Aliso Viejo
+9018,San Jose
+9019,Bangalore
+9020,Minsk
+9021,Palo Alto
+9022,Kirkland
+9023,Washington
+9024,Vancouver
+9025,Austin
+9026,Boston
+9027,San Diego
+9028,New Orleans
+9029,Santa Clara
+9030,Irvine
+9031,Pittsburgh
+9032,San Ramon
+9033,Los Angeles
+9034,Folsom
+9035,Charleston
+9036,Moscow
+9037,Culver City
+9038,Mc Lean
+9039,Portland
+9040,Boulder
+9041,Pleasanton
+9042,Fremont
+9043,Beaverton
+9044,Omaha
+9045,Waltham
+9046,Philadelphia
+9047,Indianapolis
+9048,Milwaukee
+9049,Minneapolis
+9050,Amsterdam
+9051,Zurich
+9052,Singapore
+9053,Chicago
+9054,Herndon
+9055,Denver
+9056,Berlin
+9057,Hyderabad
+9058,Albany
+9059,Hoboken
+9060,Tokyo
+9061,Waterloo
+9062,Newark
+9063,Chandler
+9064,Colorado Springs
+9065,Stockholm
+9066,Costa Mesa
+9067,San Bruno
+9068,San Mateo
+9069,Plano
+9070,Richmond
+9071,Phoenix
+9072,Dallas
+9073,Round Rock
+9074,Oakland
+9075,Melbourne
+9076,Saint Petersburg
+9077,Madison
+9078,Bedford
+9079,Broomfield
+9080,Monroe
+9081,Harrisburg
+9082,Tel Aviv
+9083,Warsaw
+9084,Cincinnati
+9085,Munich
+9086,Jersey City
+9087,Beijing
+9088,Durham
+9089,Telford
+9090,Hangzhou
+9091,Vienna
+9092,Burlington
+9093,Pune
+9094,Raleigh
+9095,Leixlip
+9096,Luxembourg
+9097,Fort Lauderdale
+9098,Redlands
+9099,Shanghai
+9100,Orlando
+9101,Toronto
+9102,Oregon City
+9103,Renton
+9104,Atlanta
+9105,Eden Prairie
+9106,Roseland
+9107,Reston
+9108,Santa Monica
+9109,St. Louis
+9110,Chantilly
+9111,New York Mills
+9112,Needham
+9113,Foster City
+9114,Prague
+9115,Bloomington
+9116,Los Altos
+9117,Woonsocket
+9118,Milpitas
+9119,Gurgaon
+9120,Champaign
+9121,Salt Lake City
+9122,Poughkeepsie
+9123,Sydney
+9124,Charlotte
+9125,Paris
+9126,Venice
+9127,Islamabad
+9128,Winston Salem
+9129,Morrisville
+9130,Roswell
+9131,Montreal
+9132,Chennai
+9133,Auckland
+9134,Copenhagen 
+9135,Columbus
+9136,Detroit
+9137,Lille
+9138,Markham
+9139,Hong Kong
+9140,Redondo Beach
+9141,Cape Town
+9142,Whippany
+9143,Brooklyn
+9144,Madrid
+9145,Stamford
+9146,San Antonio
+9147,Dubai
+9148,Albuquerque
+9149,Tempe
+9150,Newtown Square
+9151,Yorktown Heights
+9152,Gdansk
+9153,Boxborough
+9154,Hopkinton
+9155,Cary
+9156,Tampa
+9157,Bentonville
+9158,Snoqualmie
+9159,Middletown
+9160,Hartford
+9161,Bothell
+9162,Plantation Acres
+9163,Budapest
+9164,Longmont
+9165,Houston
+9166,Cedar Rapids
+9167,Colorado City
+9168,Emeryville
+9169,Haifa
+9170,Sao Paulo
+9171,Lehi
+9172,Berkeley
+9173,Sofia
+9174,Brisbane
+9175,Hudson
+9176,Kansas City
+9177,Dulles
+9178,Manhattan
+9179,Ann Arbor
+9180,Bristol
+9181,Santa Rosa
+9182,Allentown
+9183,Santa Barbara
+9184,Barcelona
+9185,Cleveland
+9186,Wroclaw
+9187,Grand Rapids
+9188,Nashua
+9189,Natick
+9190,Sandy
+9191,Mount Laurel
+9192,Boise
+9193,Arlington
+9194,Ellicott City
+9195,San Fernando
+9196,Norwalk
+9197,Sterling
+9198,Manchester
+9199,Duluth
+9200,Nashville
+9201,College Station
+9202,Jakarta
+9203,Kitchener
+9204,Long Beach
+9205,Littleton
+9206,Chengdu
+9207,San Juan
+9208,Taipei
+9209,Wilmington
+9210,Lebanon
+9211,Iasi
+9212,New Delhi
+9213,Huntsville
+9214,Glendale
+9215,Lodz
+9216,Warren
+9217,Canberra
+9218,Fort Mill
+9219,Sindelfingen
+9220,Walldorf
+9221,Wausau
+9222,Calgary
+9223,Lausanne
+9224,Heidelberg
+9225,Point Richmond
+9226,Frankfurt
+9227,Reading
+9228,Cologne
+9229,Frankford
+9230,Milford
+9231,Walnut Creek
+9232,Watertown
+9233,Los Alamitos
+9234,Guadalajara
+9235,Armonk
+9236,Lenexa
+9237,Mill Valley
+9238,Canonsburg
+9239,Bridgewater
+9240,Murfreesboro
+9241,Layton
+9242,Irving
+9243,Krakow
+9244,California City
+9245,Sparks
+9246,Des Moines
+9247,Dearborn
+9248,Buffalo Grove
+9249,San Rafael
+9250,Farmington
+9251,Carlsbad
+9252,Lake Forest
+9253,St. Petersburg
+9254,Silver Spring
+9255,Nazareth Illit
+9256,Heredia
+9257,Wuppertal
+9258,Basking Ridge
+9259,Kwajalein
+9260,Jerusalem
+9261,Hanoi
+9262,Deerfield Beach
+9263,Las Tablas
+9264,Stratford
+9265,Beverly
+9266,Windsor
+9267,Medan
+9268,Scottsdale
+9269,Lexington
+9270,Fort Collins
+9271,Raanana
+9272,North Reading
+9273,Ottawa
+9274,Clearwater
+9275,Hollywood
+9276,Fairfax
+9277,Shenzhen
+9278,Thiruvananthapuram
+9279,Piscataway
+9280,Campbell
+9281,Brooklyn Park
+9282,Issaquah
+9283,King of Prussia
+9284,Aspen
+9285,Cork
+9286,College Park
+9287,Bucharest
+9288,Glasgow
+9289,NYCHUM
+9290,Norfolk
+9291,Frisco
+9292,Rocklin
+9293,Edinburgh
+9294,San Dimas
+9295,Marietta
+9296,Portsmouth
+9297,South San Francisco
+9298,Sugar Land
+9299,Buenos Aires
+9300,Fort Worth
+9301,South Jordan
+9302,Oslo
+9303,Santa Cruz
+9304,Tewksbury
+9305,Saint Charles
+9306,Chisinau
+9307,Reno
+9308,Tucson
+9309,Ridgefield Park
+9310,Westminster
+9311,Provo
+9312,Aachen
+9313,Draper
+9314,Delhi
+9315,Eindhoven
+9316,Kanata
+9317,Everett
+9318,Dover
+9319,Bend
+9320,Alpharetta
+9321,Verona
+9322,Goshen
+9323,Pasadena
+9324,Rochester
+9325,Princeton
+9326,Columbia
+9327,Bengaluru
+9328,American Fork
+9329,Englewood
+9330,Mumbai
+9331,Indore
+9332,Tallinn
+9333,Weston
+9334,Aarhus
+9335,Winchester
+9336,Friday Harbor
+9337,Manhattan Beach
+9338,Raritan
+9339,Hunt Valley
+9340,Nairobi
+9341,Noida
+9342,Istanbul
+9343,Buda
+9344,Baton Rouge
+9345,Fulton
+9346,Milano
+9347,Exton
+9348,Malvern
+9349,Wimborne Minster
+9350,Vilnius
+9351,Framingham
+9352,Lagos
+9353,Falls Church
+9354,Brampton
+9355,Belgium
+9356,Yeovil
+9357,Roseville
+9358,Londonderry
+9359,Montvale
+9360,Adelaide
+9361,Mechanicsburg
+9362,Minnetonka
+9363,Morgantown
+9364,Corvallis
+9365,Kent
+9366,Westford
+9367,Seoul
+9368,Herzliyya
+9369,Jacksonville
+9370,Illinois City
+9371,Richardson
+9372,Kiev
+9373,El Segundo
+9374,Miami
+9375,Petach Tikva
+9376,Goleta
+9377,Hannover
+9378,Nanjing
+9379,Holtsville
+9380,Providence
+9381,Charlottesville
+9382,Southbury
+9383,San Carlos
+9384,Hoffman Estates
+9385,Cluj-Napoca
+9386,Marlborough
+9387,Amman
+9388,Belfast
+9389,Florham Park
+9390,Alexandria
+9391,Lake Mary
+9392,Claymont
+9393,Sumner
+9394,Kokomo
+9395,Hawthorne
+9396,Basingstoke
+9397,Bangkok
+9398,Greenwich
+9399,Ontario
+9400,Burbank
+9401,Leeds
+9402,Windsor Locks
+9403,Brno
+9404,Springfield
+9405,Malmo
+9406,Beloit
+9407,Tulsa
+9408,Queretaro
+9409,San Luis Obispo
+9410,Moorestown
+9411,Saint Paul
+9412,Rome
+9413,St Paul
+9414,Langhorne
+9415,Rotterdam
+9416,Mississauga
+9417,Parker
+9418,Usaquen
+9419,Lyon
+9420,West Chester
+9421,Campinas
+9422,Canada
+9423,Bogota
+9424,Stuttgart
+9425,Owego
+9426,Oxford
+9427,Bala Cynwyd
+9428,Skillman
+9429,Belgrade
+9430,Newport Beach
+9431,Memphis
+9432,O Fallon
+9433,Amersfoort
+9434,Fribourg
+9435,Andover
+9436,Newton
+9437,Needham Heights
+9438,Seabrook
+9439,Kyoto
+9440,Toulouse
+9441,Basel
+9442,Zaragoza
+9443,Bern
+9444,Lisbon
+9445,Peterborough
+9446,Guatemala
+9447,Novi Sad
+9448,Montevideo
+9449,Hamburg
+9450,Wichita
+9451,Greenville
+9452,Nottingham
+9453,Plymouth Meeting
+9454,Johnston
+9455,Fredericton
+9456,Urbandale
+9457,Galway
+9458,Tromso
+9459,Guangzhou
+9460,Bratislava
+9461,Dresden
+9462,Brazil
+9463,Lafayette
+9464,Buffalo
+9465,Downingtown
+9466,Medellin
+9467,Utrecht
+9468,Dhaka
+9469,Gie
+9470,Fairmont
+9471,Lake Charles
+9472,Annapolis Junction
+9473,Sunrise
+9474,Belo Horizonte
+9475,Las Vegas
+9476,Meriden
+9477,Olathe
+9478,Glen Allen
+9479,Aurora
+9480,Pascagoula
+9481,Iowa City
+9482,Ballston Spa
+9483,Westerville
+9484,Edmonton
+9485,Carpinteria
+9486,Feltham
+9487,Chicago Heights
+9488,Virginia Beach
+9489,Murray Hill
+9490,Helsinki
+9491,Miami Beach
+9492,Daly City
+9493,Secaucus
+9494,China
+9495,Louisville
+9496,Greenwood Village
+9497,Geneva
+9498,San Juan Bautista
+9499,London Mills
+9500,Holmdel
+9501,Petah Tiqva
+9502,Naperville
+9503,Southlake
+9504,Wayne
+9505,Florida
+9506,North Charleston
+9507,Boca Raton
+9508,Menomonee Falls
+9509,Pennington
+9510,Nurnberg
+9511,Victoria
+9512,Sophia-Antipolis
+9513,Ogden
+9514,Gainesville
+9515,Allen
+9516,Limerick
+9517,Seal Beach
+9518,Oklahoma City
+9519,Reidsville
+9520,Murray
+9521,Aguadilla
+9522,Hanover
+9523,Delaware City
+9524,Purchase
+9525,Edison
+9526,Dusseldorf
+9527,Saint Peters
+9528,Texas City
+9529,Santiago
+9530,Arizona City
+9531,New Hampton
+9532,Halifax
+9533,Germantown
+9534,Titusville
+9535,Claremont
+9536,Palm Bay
+9537,West Valley City
+9538,Prineville
+9539,Italy
+9540,Warrenville
+9541,Sochi
+9542,Menomonie
+9543,Berlin Center
+9544,Lansing
+9545,Rehovot
+9546,Newport News
+9547,Ames
+9548,Sarasota
+9549,Gilroy
+9550,Temple
+9551,Burnaby
+9552,Bethesda
+9553,Lynn
+9554,Moscow Mills
+9555,Eagan
+9556,Torino
+9557,Livermore
+9558,Virgilina
+9559,Rockford
+9560,Helena
+9561,Pittsburg
+9562,Schaumburg
+9563,Birmingham
+9564,Minnesota City
+9565,Manassas
+9566,Rolling Meadows
+9567,Summit
+9568,Mckinney
+9569,Ashburn
+9570,East Hartford
+9571,Spring
+9572,Orange
+9573,Northridge
+9574,Ekaterinburg
+9575,Dearborn Heights
+9576,Alameda
+9577,Goa
+9578,Boone
+9579,Guildford
+9580,White Plains
+9581,Dalian
+9582,Banganapalle
+9583,New Brunswick
+9584,Palmdale
+9585,Bowling Green
+9586,Perth
+9587,Wilton
+9588,Braga
+9589,Azusa
+9590,Suzhou
+9591,Winnipeg
+9592,Lviv
+9593,Mason
+9594,Zug
+9595,Santa Rosa Beach
+9596,Elkridge
+9597,Eugene
+9598,Indiana
+9599,Saratoga Springs
+9600,Plymouth
+9601,Porto
+9602,Kuala Lumpur
+9603,Fullerton
+9604,Saint Louis
+9605,Debrecen
+9606,Antioch
+9607,Morristown
+9608,Roanoke
+9609,Fayetteville
+9610,Tualatin
+9611,Gandhinagar
+9612,Brasilia
+9613,Trumbull
+9614,Ireland
+9615,RIGA
+9616,Riyadh
+9617,Kolkata
+9618,Hatfield
+9619,Schenectady
+9620,Fukuoka
+9621,Trivandrum
+9622,San Francisco De Dos Rios
+9623,Woodland Hills
+9624,Shelton
+9625,Sheffield
+9626,Waukesha
+9627,Bloomfield
+9628,Hahira
+9629,Dallas Center
+9630,Neuchatel
+9631,Elk Grove
+9632,Lima
+9633,Mandaluyong City
+9634,Nice
+9635,Trondheim
+9636,Northampton
+9637,Teaneck
+9638,Karlsruhe
+9639,Thousand Oaks
+9640,Torrance
+9641,Westport
+9642,Mexico
+9643,Iselin
+9644,Graz
+9645,Coppell
+9646,Suwon
+9647,Bielefeld
+9648,San Marcos
+9649,Tracy
+9650,Oulu
+9651,Yavne
+9652,Deerfield
+9653,Kfar saba
+9654,Franklin
+9655,Sammamish
+9656,Swindon
+9657,Philipsburg
+9658,Oldsmar
+9659,Rialto
+9660,Suwanee
+9661,Dortmund
+9662,Pensacola
+9663,Garner
+9664,Ho Chi Minh City
+9665,Ankara
+9666,Liverpool
+9667,Pelham
+9668,Brussels
+9669,Yangon
+9670,Naples
+9671,Schwieberdingen
+9672,Shawnee Mission
+9673,Manila
+9674,Leamington
+9675,Berwyn
+9676,Belmont
+9677,Tacoma
+9678,Doha
+9679,Cypress
+9680,Temecula
+9681,Merrimack
+9682,Overland Park
+9683,Lund
+9684,Indian Lake
+9685,Ciudad de Mexico
+9686,Auburn Hills
+9687,Northbrook
+9688,Kharkiv
+9689,Palm Beach
+9690,West Orange
+9691,Wilsonville
+9692,Clearfield
+9693,Horsham
+9694,Owings Mills
+9695,Novosibirsk
+9696,Nizhniy Novgorod
+9697,Denver City
+9698,Saskatoon
+9699,Valdosta
+9700,Troy
+9701,Montpellier
+9702,Honolulu
+9703,Hayward
+9704,Kaliningrad
+9705,McLean
+9706,Gilbert
+9707,Zapopan
+9708,Newcastle Upon Tyne
+9709,The Hague
+9710,Martinsburg
+9711,Athens
+9712,Alphen Aan Den Rijn
+9713,West Palm Beach
+9714,Kalamazoo
+9715,Inwood
+9716,Kherson
+9717,Trenton
+9718,Butte
+9719,Johor Baharu
+9720,Lindau
+9721,Saratov
+9722,Davie
+9723,Erlangen
+9724,Brighton
+9725,Hermitage
+9726,Rio Rancho
+9727,Jeddah
+9728,Vermont
+9729,Penang
+9730,Fresno
+9731,Tampere
+9732,Van Nuys
+9733,Westborough
+9734,Parsippany
+9735,Mesa
+9736,Arvada
+9737,Rahway
+9738,Staines
+9739,Chapel Hill
+9740,Placerville
+9741,Lindon
+9742,Steubenville
+9743,Ingolstadt
+9744,Fall River
+9745,Norwich
+9746,Kochi
+9747,Sabinsville
+9748,Beer-Sheva
+9749,Osaka
+9750,Centreville
+9751,Gliwice
+9752,Florianopolis
+9753,Vacaville
+9754,Suitland
+9755,Reedsville
+9756,Bournemouth
+9757,Bolivia
+9758,Eatontown
+9759,Burnsville
+9760,Quebec
+9761,Traverse City
+9762,Regensburg
+9763,Suffolk
+9764,Moline
+9765,West Hollywood
+9766,Wellesley
+9767,Nebraska City
+9768,Mahwah
+9769,South Bend
+9770,Endicott
+9771,Sao Leopoldo
+9772,Collierville
+9773,Cape Girardeau
+9774,Roy
+9775,Egypt
+9776,Loveland
+9777,Paterson
+9778,Jamaica Beach
+9779,Augusta
+9780,Malaga
+9781,Fargo
+9782,Spokane
+9783,Michigan Center
+9784,York
+9785,Ohio City
+9786,Englewood Cliffs
+9787,Syracuse
+9788,La Jolla
+9789,Bozeman
+9790,Hauppauge
+9791,North Haven
+9792,Gdynia
+9793,Abingdon
+9794,Fort Bragg
+9795,Gaithersburg
+9796,Hopewell
+9797,Angeles City
+9798,Gold Coast
+9799,Sorrento
+9800,Fountain Inn
+9801,Highland Park
+9802,Frederick
+9803,Crapo
+9804,Odessa
+9805,Tustin
+9806,Bossier City
+9807,Miramar
+9808,Johnson City
+9809,Annandale
+9810,Peachtree City
+9811,Shingle Springs
+9812,Worcester
+9813,Fairfield
+9814,Linthicum Heights
+9815,Palm Springs
+9816,Athlone
+9817,Midvale
+9818,Mobile
+9819,Arlington Heights
+9820,Missouri City
+9821,Maple Shade
+9822,Whitehouse Station
+9823,Hiawatha
+9824,New Braunfels
+9825,Clifton
+9826,Burlingame
+9827,La Canada Flintridge
+9828,Thornton
+9829,Rogers
+9830,Somerville
+9831,Sherbrooke
+9832,Lod
+9833,Archbald
+9834,Hazelwood
+9835,Fredericksburg
+9836,Nagoya
+9837,Poland
+9838,Porto Alegre
+9839,Aberdeen Proving Ground
+9840,Santa Maria
+9841,Issy-les-Moulineaux
+9842,Fort Knox
+9843,Monterey
+9844,Poway
+9845,Evanston
+9846,Kaneohe
+9847,Simsbury
+9848,Fairfax Station
+9849,Veldhoven
+9850,Cheyenne
+9851,Nantes
+9852,Columbus Grove
+9853,Gothenburg
+9854,Bonn
+9855,Brea
+9856,Huntington Beach
+9857,California Hot Springs
+9858,Hopewell Junction
+9859,La Crosse
+9860,Accra
+9861,Rockville
+9862,Bridgeport
+9863,Dayton
+9864,Navi Mumbai
+9865,Cochin
+9866,Hamilton
+9867,Mississippi State
+9868,Holon
+9869,New Providence
+9870,Camas
+9871,Hawaiian Gardens
+9872,East Rutherford
+9873,Johannesburg
+9874,Hsin-chu
+9875,Toledo
+9876,Taoyuan
+9877,New Haven
+9878,Watford
+9879,Almaty
+9880,Amstelveen
+9881,Dnepropetrovsk
+9882,Smithfield
+9883,Waukegan
+9884,Lexington Park
+9885,Bergenfield
+9886,Berkeley Heights
+9887,hod hasharon
+9888,Anaheim
+9889,Woodstock
+9890,Kazan
+9891,Oregon
+9892,Fort Myers
+9893,Pennsylvania Furnace
+9894,Stockport
+9895,Oshawa
+9896,Concord
+9897,Ulm
+9898,Valbonne
+9899,Pontiac
+9900,Mar del Plata
+9901,Neuquen
+9902,Chester Springs
+9903,Chandler Heights
+9904,San Leandro
+9905,Tashkent
+9906,Cali
+9907,Sandisfield
+9908,Levis
+9909,Altrincham
+9910,Covington
+9911,Taunton
+9912,California
+9913,Allen Park
+9914,Ridley Park
+9915,Courbevoic
+9916,Morris Plains
+9917,Hsin-Chu County
+9918,Yerevan
+9919,Monument
+9920,Tainan
+9921,Taichung City
+9922,Maryland Heights
+9923,Lake Saint Louis
+9924,Chu-nan
+9925,Julianadorp
+9926,Clementi
+9927,Hoofddorp
+9928,West McLean
+9929,Annapolis
+9930,Tampines
+9931,Woodlands
+9932,Bad Homburg
+9933,North Houston
+9934,Yulee
+9935,Fort Wayne
+9936,Rabat
+9937,Panchiao
+9938,Sembawang
+9939,Santa Clarita
+9940,Shevlin
+9941,Nineveh
+9942,Edgewater
+9943,Shreveport
+9944,Fort George G Meade
+9945,Bedok
+9946,Raffles Park
+9947,Cape Canaveral
+9948,Georgiana
+9949,T'ai-chung
+9950,Port of Spain
+9951,New City
+9952,Giza
+9953,Pasir Ris
+9954,Hilbert
