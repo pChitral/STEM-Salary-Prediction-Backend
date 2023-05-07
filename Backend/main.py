@@ -471,6 +471,8 @@ async def create_employee(item: Employee):
     gender_id = gender_lookup[item.gender.lower()]
     race_id = race_lookup[item.race.lower()]
     edu_id = edu_lookup[item.education.lower()]
+    
+    # Call Location Database
     location_str = location_lookup[item.location_str.lower()]
     title_str = title_lookup[item.title_str.lower()]
     tag_str = tag_lookup[item.tag_str.lower()]
@@ -525,7 +527,6 @@ async def delete_employee(item_id: int):
     return {"item_id": item_id}
 
 # LOCATION CRUD
-
 
 class Location(BaseModel):
     location_id: int
