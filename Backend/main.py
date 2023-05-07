@@ -18,6 +18,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+db_path = 'jobs_database.db'
+
+
+def db_connection():
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    return conn, c
+
+
+def close_db_connection(conn):
+    conn.commit()
+    conn.close()
+
 # Race CRUD
 
 
@@ -28,8 +42,7 @@ class Item(BaseModel):
 
 @app.post("/race/create")
 async def create_race(item: Item):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Race (race_id, race_name) VALUES (?, ?)",
               (item.race_id, item.race_name))
     conn.commit()
@@ -39,22 +52,19 @@ async def create_race(item: Item):
 
 @app.get("/races/")
 async def read_races():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Race")
     items = []
     for row in c.fetchall():
         item = {"race_id": row[0],  "race_name": row[1]}
         items.append(item)
-    conn.commit()
-    conn.close()
+    close_db_connection(conn)
     return {"items": items}
 
 
 @app.put("/race/update/{item_id}")
 async def update_race(item_id: int, item: Item):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Race SET race_name = ? WHERE race_id = ?",
               (item.race_id, item.race_name))
     conn.commit()
@@ -64,8 +74,7 @@ async def update_race(item_id: int, item: Item):
 
 @app.delete("/race/delete/{item_id}")
 async def delete_race(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Race WHERE race_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -81,8 +90,7 @@ class EducationItem(BaseModel):
 
 @app.post("/education/create")
 async def create_education(item: EducationItem):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Education (edu_id, edu_name) VALUES (?, ?)",
               (item.edu_id, item.edu_name))
     conn.commit()
@@ -92,8 +100,7 @@ async def create_education(item: EducationItem):
 
 @app.get("/educations/")
 async def read_educations():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Education")
     items = []
     for row in c.fetchall():
@@ -106,8 +113,7 @@ async def read_educations():
 
 @app.put("/education/update/{item_id}")
 async def update_education(item_id: int, item: EducationItem):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Education SET edu_name = ? WHERE edu_id = ?",
               (item.edu_name, item_id))
     conn.commit()
@@ -117,8 +123,7 @@ async def update_education(item_id: int, item: EducationItem):
 
 @app.delete("/education/delete/{item_id}")
 async def delete_education(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Education WHERE edu_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -134,8 +139,7 @@ class CityItem(BaseModel):
 
 @app.post("/city/create")
 async def create_city(city_item: CityItem):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO City (city_id, city_name) VALUES (?, ?)",
               (city_item.city_id, city_item.city_name))
     conn.commit()
@@ -145,8 +149,7 @@ async def create_city(city_item: CityItem):
 
 @app.get("/cities/")
 async def read_cities():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM City")
     items = []
     for row in c.fetchall():
@@ -159,8 +162,7 @@ async def read_cities():
 
 @app.put("/city/update/{item_id}")
 async def update_city(item_id: int, city_item: CityItem):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE City SET city_name = ? WHERE city_id = ?",
               (city_item.city_name, item_id))
     conn.commit()
@@ -170,8 +172,7 @@ async def update_city(item_id: int, city_item: CityItem):
 
 @app.delete("/city/delete/{item_id}")
 async def delete_city(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM City WHERE city_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -190,8 +191,7 @@ class CompanyItem(BaseModel):
 # Create a new company
 @app.post("/company/create")
 async def create_company(item: CompanyItem):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Company (company_id, company_name) VALUES (?, ?)",
               (item.company_id, item.company_name))
     conn.commit()
@@ -202,8 +202,7 @@ async def create_company(item: CompanyItem):
 # Read all companies
 @app.get("/companies/")
 async def read_companies():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Company")
     items = []
     for row in c.fetchall():
@@ -217,8 +216,7 @@ async def read_companies():
 # Update a company by company_id
 @app.put("/company/update/{company_id}")
 async def update_company(company_id: int, item: CompanyItem):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Company SET company_name = ? WHERE company_id = ?",
               (item.company_name, company_id))
     conn.commit()
@@ -229,8 +227,7 @@ async def update_company(company_id: int, item: CompanyItem):
 # Delete a company by company_id
 @app.delete("/company/delete/{company_id}")
 async def delete_company(company_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Company WHERE company_id = ?", (company_id,))
     conn.commit()
     conn.close()
@@ -246,8 +243,7 @@ class Tag(BaseModel):
 
 @app.post("/tag/create")
 async def create_tag(item: Tag):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Tag (tag_id, tag_name) VALUES (?, ?)",
               (item.tag_id, item.tag_name))
     conn.commit()
@@ -257,8 +253,7 @@ async def create_tag(item: Tag):
 
 @app.get("/tags/")
 async def read_tags():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Tag")
     items = []
     for row in c.fetchall():
@@ -271,8 +266,7 @@ async def read_tags():
 
 @app.put("/tag/update/{item_id}")
 async def update_tag(item_id: int, item: Tag):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Tag SET tag_name = ? WHERE tag_id = ?",
               (item.tag_name, item_id))
     conn.commit()
@@ -282,8 +276,7 @@ async def update_tag(item_id: int, item: Tag):
 
 @app.delete("/tag/delete/{item_id}")
 async def delete_tag(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Tag WHERE tag_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -299,8 +292,7 @@ class Title(BaseModel):
 
 @app.post("/title/create")
 async def create_title(item: Title):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Title (title_id, title_name) VALUES (?, ?)",
               (item.title_id, item.title_name))
     conn.commit()
@@ -310,8 +302,7 @@ async def create_title(item: Title):
 
 @app.get("/titles/")
 async def read_titles():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Title")
     items = []
     for row in c.fetchall():
@@ -324,8 +315,7 @@ async def read_titles():
 
 @app.put("/title/update/{item_id}")
 async def update_title(item_id: int, item: Title):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Title SET title_name = ? WHERE title_id = ?",
               (item.title_name, item_id))
     conn.commit()
@@ -335,8 +325,7 @@ async def update_title(item_id: int, item: Title):
 
 @app.delete("/title/delete/{item_id}")
 async def delete_title(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Title WHERE title_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -352,8 +341,7 @@ class State(BaseModel):
 
 @app.post("/state/create")
 async def create_state(item: State):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO State (state_id, state_name) VALUES (?, ?)",
               (item.state_id, item.state_name))
     conn.commit()
@@ -363,8 +351,7 @@ async def create_state(item: State):
 
 @app.get("/states/")
 async def read_states():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM State")
     items = []
     for row in c.fetchall():
@@ -377,8 +364,7 @@ async def read_states():
 
 @app.put("/state/update/{item_id}")
 async def update_state(item_id: int, item: State):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE State SET state_name = ? WHERE state_id = ?",
               (item.state_name, item_id))
     conn.commit()
@@ -388,8 +374,7 @@ async def update_state(item_id: int, item: State):
 
 @app.delete("/state/delete/{item_id}")
 async def delete_state(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM State WHERE state_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -405,8 +390,7 @@ class Country(BaseModel):
 
 @app.post("/country/create")
 async def create_country(item: Country):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Country (country_id, country_name) VALUES (?, ?)",
               (item.country_id, item.country_name))
     conn.commit()
@@ -416,8 +400,7 @@ async def create_country(item: Country):
 
 @app.get("/countries/")
 async def read_countries():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Country")
     items = []
     for row in c.fetchall():
@@ -430,8 +413,7 @@ async def read_countries():
 
 @app.put("/country/update/{item_id}")
 async def update_country(item_id: int, item: Country):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Country SET country_name = ? WHERE country_id = ?",
               (item.country_name, item_id))
     conn.commit()
@@ -441,8 +423,7 @@ async def update_country(item_id: int, item: Country):
 
 @app.delete("/country/delete/{item_id}")
 async def delete_country(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Country WHERE country_id = ?", (item_id,))
     conn.commit()
     conn.close()
@@ -458,8 +439,7 @@ class Gender(BaseModel):
 
 @app.post("/gender/create")
 async def create_gender(item: Gender):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("INSERT INTO Gender (gender_id, gender_type) VALUES (?, ?)",
               (item.gender_id, item.gender_type))
     conn.commit()
@@ -469,8 +449,7 @@ async def create_gender(item: Gender):
 
 @app.get("/genders/")
 async def read_genders():
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("SELECT * FROM Gender")
     items = []
     for row in c.fetchall():
@@ -483,8 +462,7 @@ async def read_genders():
 
 @app.put("/gender/update/{item_id}")
 async def update_gender(item_id: int, item: Gender):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("UPDATE Gender SET gender_type = ? WHERE gender_id = ?",
               (item.gender_type, item_id))
     conn.commit()
@@ -494,8 +472,7 @@ async def update_gender(item_id: int, item: Gender):
 
 @app.delete("/gender/delete/{item_id}")
 async def delete_gender(item_id: int):
-    conn = sqlite3.connect('jobs_database.db')
-    c = conn.cursor()
+    conn, c = db_connection()
     c.execute("DELETE FROM Gender WHERE gender_id = ?", (item_id,))
     conn.commit()
     conn.close()
