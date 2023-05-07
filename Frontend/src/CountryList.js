@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import { Button, Input, List, TextInput, useMantineTheme } from "@mantine/core";
 
 function CountryList() {
   const [countries, setCountries] = useState([]);
   const [newCountryName, setNewCountryName] = useState("");
   const [deleteCountryId, setDeleteCountryId] = useState("");
   const [updateCountryNames, setUpdateCountryNames] = useState({});
+  const theme = useMantineTheme();
 
   useEffect(() => {
     async function fetchCountries() {
@@ -42,6 +45,10 @@ function CountryList() {
       c.country_id === country.country_id ? updatedCountry : c
     );
     setCountries(updatedCountries);
+    setUpdateCountryNames({
+      ...updateCountryNames,
+      [country.country_id]: updatedCountry.country_name,
+    });
   }
 
   async function handleDeleteCountry() {
@@ -56,14 +63,19 @@ function CountryList() {
   }
 
   return (
-    <div>
+    <div style={{ maxWidth: 600, margin: "auto", padding: theme.spacing.xl }}>
       <h1>Country List</h1>
-      <ul>
+      <List>
         {countries.map((country) => (
-          <li key={country.country_id}>
-            {country.country_id} - {country.country_name}
-            <input
-              type="text"
+          <List
+            key={country.country_id}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <div style={{ marginRight: theme.spacing.xs }}>
+              {country.country_id} - {country.country_name}
+            </div>
+            <TextInput
+              placeholder="Update name"
               value={updateCountryNames[country.country_id] || ""}
               onChange={(e) =>
                 setUpdateCountryNames({
@@ -71,33 +83,48 @@ function CountryList() {
                   [country.country_id]: e.target.value,
                 })
               }
+              style={{ marginRight: theme.spacing.xs }}
             />
-            <button onClick={() => handleUpdateCountry(country)}>Update</button>
-            <button onClick={() => setDeleteCountryId(country.country_id)}>
+            <Button
+              variant="outline"
+              color="blue"
+              onClick={() => handleUpdateCountry(country)}
+            >
+              Update
+            </Button>
+            <Button
+              variant="outline"
+              color="red"
+              onClick={() => setDeleteCountryId(country.country_id)}
+            >
               Delete
-            </button>
-          </li>
+            </Button>
+          </List>
         ))}
-      </ul>
-      <div>
+      </List>
+      <div style={{ marginTop: theme.spacing.xl }}>
         <h2>Create Country</h2>
-        <input
-          type="text"
+        <Input
           placeholder="Country name"
           value={newCountryName}
           onChange={(e) => setNewCountryName(e.target.value)}
+          style={{ marginRight: theme.spacing.xs }}
         />
-        <button onClick={handleCreateCountry}>Create</button>
+        <Button onClick={handleCreateCountry} color="blue">
+          Create
+        </Button>
       </div>
-      <div>
+      <div style={{ marginTop: theme.spacing.xl }}>
         <h2>Delete Country</h2>
-        <input
-          type="text"
+        <Input
           placeholder="Country ID"
           value={deleteCountryId}
           onChange={(e) => setDeleteCountryId(parseInt(e.target.value))}
+          style={{ marginRight: theme.spacing.xs }}
         />
-        <button onClick={handleDeleteCountry}>Delete</button>
+        <Button onClick={handleDeleteCountry} color="red">
+          Delete
+        </Button>
       </div>
     </div>
   );
