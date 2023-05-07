@@ -397,6 +397,7 @@ async def delete_state(item_id: int):
 
 # COUNTRY CRUD
 
+
 class Country(BaseModel):
     country_id: int
     country_name: str
@@ -447,19 +448,24 @@ async def delete_country(item_id: int):
     conn.close()
     return {"item_id": item_id}
 
-# GENDER CRUD 
+# GENDER CRUD
+
+
 class Gender(BaseModel):
     gender_id: int
     gender_type: str
+
 
 @app.post("/gender/create")
 async def create_gender(item: Gender):
     conn = sqlite3.connect('jobs_database.db')
     c = conn.cursor()
-    c.execute("INSERT INTO Gender (gender_id, gender_type) VALUES (?, ?)", (item.gender_id, item.gender_type))
+    c.execute("INSERT INTO Gender (gender_id, gender_type) VALUES (?, ?)",
+              (item.gender_id, item.gender_type))
     conn.commit()
     conn.close()
     return {"item": item}
+
 
 @app.get("/genders/")
 async def read_genders():
@@ -474,14 +480,17 @@ async def read_genders():
     conn.close()
     return {"items": items}
 
+
 @app.put("/gender/update/{item_id}")
 async def update_gender(item_id: int, item: Gender):
     conn = sqlite3.connect('jobs_database.db')
     c = conn.cursor()
-    c.execute("UPDATE Gender SET gender_type = ? WHERE gender_id = ?", (item.gender_type, item_id))
+    c.execute("UPDATE Gender SET gender_type = ? WHERE gender_id = ?",
+              (item.gender_type, item_id))
     conn.commit()
     conn.close()
     return {"item_id": item_id, "item": item}
+
 
 @app.delete("/gender/delete/{item_id}")
 async def delete_gender(item_id: int):
