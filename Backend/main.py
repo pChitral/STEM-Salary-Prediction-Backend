@@ -222,15 +222,15 @@ async def delete_company(company_id: int):
 # Tag CRUD
 
 class Tag(BaseModel):
-    tag_id: int
+    tag_str: int
     tag_name: str
 
 
 @app.post("/tag/create")
 async def create_tag(item: Tag):
     conn, c = db_connection()
-    c.execute("INSERT INTO Tag (tag_id, tag_name) VALUES (?, ?)",
-              (item.tag_id, item.tag_name))
+    c.execute("INSERT INTO Tag (tag_str, tag_name) VALUES (?, ?)",
+              (item.tag_str_str, item.tag_str_name))
     close_db_connection(conn)
     return {"item": item}
 
@@ -241,7 +241,7 @@ async def read_tags():
     c.execute("SELECT * FROM Tag")
     items = []
     for row in c.fetchall():
-        item = {"tag_id": row[0],  "tag_name": row[1]}
+        item = {"tag_str": row[0],  "tag_name": row[1]}
         items.append(item)
     close_db_connection(conn)
     return {"items": items}
@@ -250,8 +250,8 @@ async def read_tags():
 @app.put("/tag/update/{item_id}")
 async def update_tag(item_id: int, item: Tag):
     conn, c = db_connection()
-    c.execute("UPDATE Tag SET tag_name = ? WHERE tag_id = ?",
-              (item.tag_name, item_id))
+    c.execute("UPDATE Tag SET tag_name = ? WHERE tag_str = ?",
+              (item.tag_str_name, item_id))
     close_db_connection(conn)
     return {"item_id": item_id, "item": item}
 
@@ -259,7 +259,7 @@ async def update_tag(item_id: int, item: Tag):
 @app.delete("/tag/delete/{item_id}")
 async def delete_tag(item_id: int):
     conn, c = db_connection()
-    c.execute("DELETE FROM Tag WHERE tag_id = ?", (item_id,))
+    c.execute("DELETE FROM Tag WHERE tag_str = ?", (item_id,))
     close_db_connection(conn)
     return {"item_id": item_id}
 
@@ -267,15 +267,15 @@ async def delete_tag(item_id: int):
 
 
 class Title(BaseModel):
-    title_id: int
+    title_str: int
     title_name: str
 
 
 @app.post("/title/create")
 async def create_title(item: Title):
     conn, c = db_connection()
-    c.execute("INSERT INTO Title (title_id, title_name) VALUES (?, ?)",
-              (item.title_id, item.title_name))
+    c.execute("INSERT INTO Title (title_str, title_name) VALUES (?, ?)",
+              (item.title_str_str, item.title_str_name))
     close_db_connection(conn)
     return {"item": item}
 
@@ -286,7 +286,7 @@ async def read_titles():
     c.execute("SELECT * FROM Title")
     items = []
     for row in c.fetchall():
-        item = {"title_id": row[0],  "title_name": row[1]}
+        item = {"title_str": row[0],  "title_name": row[1]}
         items.append(item)
     close_db_connection(conn)
     return {"items": items}
@@ -295,8 +295,8 @@ async def read_titles():
 @app.put("/title/update/{item_id}")
 async def update_title(item_id: int, item: Title):
     conn, c = db_connection()
-    c.execute("UPDATE Title SET title_name = ? WHERE title_id = ?",
-              (item.title_name, item_id))
+    c.execute("UPDATE Title SET title_name = ? WHERE title_str = ?",
+              (item.title_str_name, item_id))
     close_db_connection(conn)
     return {"item_id": item_id, "item": item}
 
@@ -304,7 +304,7 @@ async def update_title(item_id: int, item: Title):
 @app.delete("/title/delete/{item_id}")
 async def delete_title(item_id: int):
     conn, c = db_connection()
-    c.execute("DELETE FROM Title WHERE title_id = ?", (item_id,))
+    c.execute("DELETE FROM Title WHERE title_str = ?", (item_id,))
     close_db_connection(conn)
     return {"item_id": item_id}
 
@@ -440,5 +440,134 @@ async def update_gender(item_id: int, item: Gender):
 async def delete_gender(item_id: int):
     conn, c = db_connection()
     c.execute("DELETE FROM Gender WHERE gender_id = ?", (item_id,))
+    close_db_connection(conn)
+    return {"item_id": item_id}
+
+# EMPLOYEE CRUD
+
+
+class Employee(BaseModel):
+    emp_id: int
+    timestamp: str
+    company_id: int
+    level_id: int
+    title_str: str
+    total_yearly_compensation: int
+    location_str: str
+    years_of_experience: int
+    years_at_company: int
+    tag_str: str
+    base_salary: float
+    stock_grant_value: float
+    bonus: float
+    gender: str
+    race: str
+    education: str
+
+
+@app.post("/employee/create")
+async def create_employee(item: Employee):
+    conn, c = db_connection()
+    gender_id = gender_lookup[item.gender.lower()]
+    race_id = race_lookup[item.race.lower()]
+    edu_id = edu_lookup[item.education.lower()]
+    location_str = location_lookup[item.location_str.lower()]
+    title_str = title_lookup[item.title_str.lower()]
+    tag_str = tag_lookup[item.tag_str.lower()]
+    c.execute("INSERT INTO Employee (emp_id, timestamp, company_id, level_id, title_str, total_yearly_compensation, location_str, years_of_experience, years_at_company, tag_str, base_salary, stock_grant_value, bonus, gender_id, race_id, edu_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+              (item.emp_id,
+               item.timestamp,
+               item.company_id,
+               item.level_id,
+               title_str,
+               item.total_yearly_compensation,
+               location_str,
+               item.years_of_experience,
+               item.years_at_company,
+               tag_str,
+               item.base_salary,
+               item.stock_grant_value,
+               item.bonus,
+               gender_id,
+               race_id,
+               edu_id))
+    close_db_connection(conn)
+    return {"item": item}
+
+
+@app.get("/employees/")
+async def read_employees():
+    conn, c = db_connection()
+    c.execute("SELECT * FROM Employee LIMIT 5")
+    items = []
+    for row in c.fetchall():
+        item = {"emp_id": row[0], "timestamp": row[1], "company_id": row[2], "level_id": row[3], "title_str": row[4], "total_yearly_compensation": row[5], "location_str": row[6], "years_of_experience": row[7],
+                "years_at_company": row[8], "tag_str": row[9], "base_salary": row[10], "stock_grant_value": row[11], "bonus": row[12], "gender_id": row[13], "race_id": row[14], "edu_id": row[15]}
+        items.append(item)
+    close_db_connection(conn)
+    return {"items": items}
+
+
+@app.put("/employee/update/{item_id}")
+async def update_employee(item_id: int, item: Employee):
+    conn, c = db_connection()
+    c.execute("UPDATE Employee SET timestamp = ?, company_id = ?, level_id = ?, title_str = ?, total_yearly_compensation = ?, location_str = ?, years_of_experience = ?, years_at_company = ?, tag_str = ?, base_salary = ?, stock_grant_value = ?, bonus = ?, gender_id = ?, race_id = ?, edu_id = ? WHERE emp_id = ?",
+              (item.timestamp, item.company_id, item.level_id, item.title_str_str, item.total_yearly_compensation, item.location_str_str, item.years_of_experience, item.years_at_company, item.tag_str_str, item.base_salary, item.stock_grant_value, item.bonus, item.gender_id, item.race_id, item.edu_id, item_id))
+    close_db_connection(conn)
+    return {"item_id": item_id, "item": item}
+
+
+@app.delete("/employee/delete/{item_id}")
+async def delete_employee(item_id: int):
+    conn, c = db_connection()
+    c.execute("DELETE FROM Employee WHERE emp_id = ?", (item_id,))
+    close_db_connection(conn)
+    return {"item_id": item_id}
+
+# LOCATION CRUD
+
+
+class Location(BaseModel):
+    location_id: int
+    city_id: int
+    state_id: int
+    country_id: int
+
+
+@app.post("/location/create")
+async def create_location(item: Location):
+    conn, c = db_connection()
+    c.execute("INSERT INTO Location (location_id, city_id, state_id, country_id) VALUES (?, ?, ?, ?)",
+              (item.location_id, item.city_id, item.state_id, item.country_id))
+    close_db_connection(conn)
+    return {"item": item}
+
+
+@app.get("/locations/")
+async def read_locations():
+    conn, c = db_connection()
+    c.execute("SELECT * FROM Location")
+    items = []
+    for row in c.fetchall():
+        item = {"location_id": row[0], "city_id": row[1],
+                "state_id": row[2], "country_id": row[3]}
+        items.append(item)
+    close_db_connection(conn)
+    return {"items": items}
+
+
+@app.put("/location/update/{item_id}")
+async def update_location(item_id: int, item: Location):
+    conn, c = db_connection()
+    c.execute("UPDATE Location SET city_id = ?, state_id = ?, country_id = ? WHERE location_id = ?",
+              (item.city_id, item.state_id, item.country_id, item_id))
+    close_db_connection(conn)
+    return {"item_id": item_id, "item": item}
+
+
+@app.delete("/location/delete/{item_id}")
+async def delete_location(item_id: int):
+    conn, c = db_connection()
+    c.execute("DELETE FROM Location WHERE location_id = ?", (item_id,))
     close_db_connection(conn)
     return {"item_id": item_id}
