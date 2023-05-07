@@ -20,6 +20,7 @@ app.add_middleware(
 
 # Race CRUD
 
+
 class Item(BaseModel):
     race_id: int
     race_name: str
@@ -125,6 +126,7 @@ async def delete_education(item_id: int):
 
 # City CRUD
 
+
 class CityItem(BaseModel):
     city_id: int
     city_name: str
@@ -178,6 +180,8 @@ async def delete_city(item_id: int):
 # COMPANY CRUD
 
 # Define the Item schema
+
+
 class CompanyItem(BaseModel):
     company_id: int
     company_name: str
@@ -233,8 +237,6 @@ async def delete_company(company_id: int):
     return {"company_id": company_id}
 
 
-
-
 # Tag CRUD
 
 class Tag(BaseModel):
@@ -283,6 +285,209 @@ async def delete_tag(item_id: int):
     conn = sqlite3.connect('jobs_database.db')
     c = conn.cursor()
     c.execute("DELETE FROM Tag WHERE tag_id = ?", (item_id,))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id}
+
+# TITLE CRUD
+
+
+class Title(BaseModel):
+    title_id: int
+    title_name: str
+
+
+@app.post("/title/create")
+async def create_title(item: Title):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Title (title_id, title_name) VALUES (?, ?)",
+              (item.title_id, item.title_name))
+    conn.commit()
+    conn.close()
+    return {"item": item}
+
+
+@app.get("/titles/")
+async def read_titles():
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM Title")
+    items = []
+    for row in c.fetchall():
+        item = {"title_id": row[0],  "title_name": row[1]}
+        items.append(item)
+    conn.commit()
+    conn.close()
+    return {"items": items}
+
+
+@app.put("/title/update/{item_id}")
+async def update_title(item_id: int, item: Title):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Title SET title_name = ? WHERE title_id = ?",
+              (item.title_name, item_id))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id, "item": item}
+
+
+@app.delete("/title/delete/{item_id}")
+async def delete_title(item_id: int):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM Title WHERE title_id = ?", (item_id,))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id}
+
+# STATE CRUD
+
+
+class State(BaseModel):
+    state_id: int
+    state_name: str
+
+
+@app.post("/state/create")
+async def create_state(item: State):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO State (state_id, state_name) VALUES (?, ?)",
+              (item.state_id, item.state_name))
+    conn.commit()
+    conn.close()
+    return {"item": item}
+
+
+@app.get("/states/")
+async def read_states():
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM State")
+    items = []
+    for row in c.fetchall():
+        item = {"state_id": row[0],  "state_name": row[1]}
+        items.append(item)
+    conn.commit()
+    conn.close()
+    return {"items": items}
+
+
+@app.put("/state/update/{item_id}")
+async def update_state(item_id: int, item: State):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("UPDATE State SET state_name = ? WHERE state_id = ?",
+              (item.state_name, item_id))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id, "item": item}
+
+
+@app.delete("/state/delete/{item_id}")
+async def delete_state(item_id: int):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM State WHERE state_id = ?", (item_id,))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id}
+
+# COUNTRY CRUD
+
+class Country(BaseModel):
+    country_id: int
+    country_name: str
+
+
+@app.post("/country/create")
+async def create_country(item: Country):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Country (country_id, country_name) VALUES (?, ?)",
+              (item.country_id, item.country_name))
+    conn.commit()
+    conn.close()
+    return {"item": item}
+
+
+@app.get("/countries/")
+async def read_countries():
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM Country")
+    items = []
+    for row in c.fetchall():
+        item = {"country_id": row[0], "country_name": row[1]}
+        items.append(item)
+    conn.commit()
+    conn.close()
+    return {"items": items}
+
+
+@app.put("/country/update/{item_id}")
+async def update_country(item_id: int, item: Country):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Country SET country_name = ? WHERE country_id = ?",
+              (item.country_name, item_id))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id, "item": item}
+
+
+@app.delete("/country/delete/{item_id}")
+async def delete_country(item_id: int):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM Country WHERE country_id = ?", (item_id,))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id}
+
+# GENDER CRUD 
+class Gender(BaseModel):
+    gender_id: int
+    gender_type: str
+
+@app.post("/gender/create")
+async def create_gender(item: Gender):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Gender (gender_id, gender_type) VALUES (?, ?)", (item.gender_id, item.gender_type))
+    conn.commit()
+    conn.close()
+    return {"item": item}
+
+@app.get("/genders/")
+async def read_genders():
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM Gender")
+    items = []
+    for row in c.fetchall():
+        item = {"gender_id": row[0], "gender_type": row[1]}
+        items.append(item)
+    conn.commit()
+    conn.close()
+    return {"items": items}
+
+@app.put("/gender/update/{item_id}")
+async def update_gender(item_id: int, item: Gender):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("UPDATE Gender SET gender_type = ? WHERE gender_id = ?", (item.gender_type, item_id))
+    conn.commit()
+    conn.close()
+    return {"item_id": item_id, "item": item}
+
+@app.delete("/gender/delete/{item_id}")
+async def delete_gender(item_id: int):
+    conn = sqlite3.connect('jobs_database.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM Gender WHERE gender_id = ?", (item_id,))
     conn.commit()
     conn.close()
     return {"item_id": item_id}
