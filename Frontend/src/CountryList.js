@@ -12,7 +12,7 @@ function CountryList() {
 
   useEffect(() => {
     async function fetchCountries() {
-      const response = await axios.get("http://http://3.95.169.32:8000/countries");
+      const response = await axios.get("http://3.95.169.32:8000/countries");
       setCountries(response.data.items);
     }
 
