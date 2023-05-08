@@ -11,7 +11,7 @@ function CityList() {
 
   useEffect(() => {
     async function fetchCities() {
-      const response = await axios.get("http://localhost:8000/cities");
+      const response = await axios.get("http://http://3.95.169.32:8000/cities");
       setCities(response.data.items);
     }
     fetchCities();
