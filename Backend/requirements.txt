@@ -1,0 +1,6 @@
+fastapi
+fastapi.middleware.cors
+pydantic
+sqlite3
+pandas
+sqlalchemy
